@@ -5,23 +5,20 @@
 
 let counterValue = 0;
 
-const counter = document.querySelector("#counter");
 const decButton = counter.querySelector('[data-action="decrement"]');
 const incButton = counter.querySelector('[data-action="increment"]');
 const valueElem = counter.querySelector("#value");
 
-function updateCounter() {
+decButton.addEventListener("click", onDecValue);
+
+function onDecValue() {
+  counterValue -= 1;
   valueElem.textContent = counterValue;
 }
 
-decButton.addEventListener("click", function () {
-  counterValue -= 1;
-  updateCounter();
-});
+incButton.addEventListener("click", onIncValue);
 
-incButton.addEventListener("click", function () {
+function onIncValue() {
   counterValue += 1;
-  updateCounter();
-});
-
-updateCounter();
+  valueElem.textContent = counterValue;
+}

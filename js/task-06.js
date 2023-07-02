@@ -8,11 +8,11 @@
 // завдання.
 
 const inputElement = document.querySelector("#validation-input");
-inputElement.addEventListener("blur", validateInput);
+inputElement.addEventListener("blur", onValidateInput);
 
 const inputLength = Number(inputElement.dataset.length); // 6 символів
 
-function validateInput() {
+function onValidateInput() {
   if (inputElement.value.length === inputLength) {
     inputElement.classList.add("valid");
     inputElement.classList.remove("invalid");

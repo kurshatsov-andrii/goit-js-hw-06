@@ -7,43 +7,48 @@ function getRandomHexColor() {
     .padStart(6, 0)}`;
 }
 
-// Напиши скрипт створення і очищення колекції елементів.Користувач вводить кількість елементів
-// в input і натискає кнопку Створити, після чого рендериться колекція.Натисненням
+// Напиши скрипт створення і очищення колекції елементів. Користувач вводить кількість елементів
+// в input і натискає кнопку Створити, після чого рендериться колекція. Натисненням
 // на кнопку Очистити, колекція елементів очищається.
-
-// Створи функцію createBoxes(amount), яка приймає один параметр - число.Функція створює
-// стільки < div >, скільки вказано в amount і додає їх у div#boxes.
-
-// Розміри найпершого <div> - 30px на 30px.
-// Кожен елемент після першого повинен бути ширшим і вищим від попереднього на 10px.
-
-// Створи функцію destroyBoxes(), яка очищає вміст div#boxes, у такий спосіб видаляючи
-// всі створені елементи.
 
 const createButton = document.querySelector("[data-create]");
 const destroyButton = document.querySelector("[data-destroy]");
 const boxesDiv = document.querySelector("#boxes");
 const inputEl = document.querySelector("#controls input");
 
-createButton.addEventListener("click", function () {
+createButton.addEventListener("click", onInput);
+
+function onInput() {
   const input = document.querySelector('input[type="number"]');
   const amount = Number(input.value);
   createBoxes(amount);
-});
-
-destroyButton.addEventListener("click", destroyBoxes);
-function createBoxes(amount) {
-  const boxSize = 30;
-  let html = "";
-  for (let i = 0; i < amount; i++) {
-    const size = boxSize + i * 10;
-    const color = getRandomHexColor();
-    html += `<div style="width: ${size}px; height: ${size}px; background-color: ${color}"></div>`;
-  }
-  boxesDiv.innerHTML = html;
 }
 
-function destroyBoxes() {
+// Створи функцію createBoxes(amount), яка приймає один параметр - число. Функція створює
+// стільки <div>, скільки вказано в amount і додає їх у div#boxes.
+
+// Розміри найпершого <div> - 30px на 30px.
+// Кожен елемент після першого повинен бути ширшим і вищим від попереднього на 10px.
+
+//Рендеріться колекція
+function createBoxes(amount) {
+  const boxSize = 30;
+  let htmlCode = "";
+  for (let i = 0; i < amount; i += 1) {
+    const size = boxSize + i * 10;
+    const color = getRandomHexColor();
+    htmlCode += `<div style="width: ${size}px; height: ${size}px; background-color: ${color}"></div>`;
+  }
+  boxesDiv.innerHTML = htmlCode;
+}
+
+// Створи функцію destroyBoxes(), яка очищає вміст div#boxes, у такий спосіб видаляючи
+// всі створені елементи.
+
+destroyButton.addEventListener("click", onDestroyBoxes);
+
+//Очистка
+function onDestroyBoxes() {
   boxesDiv.innerHTML = "";
   inputEl.value = "";
 }

@@ -20,21 +20,30 @@ function getRandomHexColor() {
 // Створи функцію destroyBoxes(), яка очищає вміст div#boxes, у такий спосіб видаляючи
 // всі створені елементи.
 
-// const inputControls = document.querySelector("#controls");
+const createButton = document.querySelector("[data-create]");
+const destroyButton = document.querySelector("[data-destroy]");
+const boxesDiv = document.querySelector("#boxes");
+const inputEl = document.querySelector("#controls input");
 
-// const createBtn = document.querySelector("[data-create]");
-// const destroyBtn = document.querySelector("[data-destroy]");
+createButton.addEventListener("click", function () {
+  const input = document.querySelector('input[type="number"]');
+  const amount = Number(input.value);
+  createBoxes(amount);
+});
 
-// const valueBoxes = document.querySelector("#boxes");
+destroyButton.addEventListener("click", destroyBoxes);
+function createBoxes(amount) {
+  const boxSize = 30;
+  let html = "";
+  for (let i = 0; i < amount; i++) {
+    const size = boxSize + i * 10;
+    const color = getRandomHexColor();
+    html += `<div style="width: ${size}px; height: ${size}px; background-color: ${color}"></div>`;
+  }
+  boxesDiv.innerHTML = html;
+}
 
-// createBtn.addEventListener("click", onChangeCollection);
-
-// destroyBtn.addEventListener("click", onResetCollection);
-
-// function onChangeCollection(evt) {
-//   const newCollection = getRandomHexColor();
-// }
-
-// function onResetCollection(evt) {
-//   evt.currentTarget.reset();
-// }
+function destroyBoxes() {
+  boxesDiv.innerHTML = "";
+  inputEl.value = "";
+}

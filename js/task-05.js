@@ -8,6 +8,7 @@ const textOutput = document.querySelector("#name-output");
 textInput.addEventListener("input", onInput);
 
 function onInput() {
-  textOutput.textContent =
-    textInput.value === "" ? "Anonymous" : textInput.value;
+  textOutput.textContent = !textInput.value
+    ? "Anonymous"
+    : textInput.value.trim();
 }

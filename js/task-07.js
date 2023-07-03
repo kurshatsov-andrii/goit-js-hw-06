@@ -7,6 +7,8 @@ const text = document.querySelector("#text");
 
 fontSizeControl.addEventListener("input", onInput);
 
+fontSizeControl.value = 16;
+
 function onInput() {
   text.style.fontSize = fontSizeControl.value + "px";
 }
